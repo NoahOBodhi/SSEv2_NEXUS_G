@@ -613,6 +613,171 @@
             transform: translateX(5px);
         }
 
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(to bottom, #e8f4f8, var(--cloud-white));
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .contact-heading {
+            font-family: var(--font-display);
+            color: var(--space-blue);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-form-wrapper {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--horizon-cyan);
+        }
+
+        .crew-contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .crew-contact-form label {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: var(--space-blue);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .crew-contact-form input,
+        .crew-contact-form select,
+        .crew-contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: var(--cloud-white);
+        }
+
+        .crew-contact-form input:focus,
+        .crew-contact-form select:focus,
+        .crew-contact-form textarea:focus {
+            outline: none;
+            border-color: var(--horizon-cyan);
+            box-shadow: 0 0 0 3px rgba(69, 183, 209, 0.1);
+        }
+
+        .crew-contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-contact {
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: all 0.3s;
+            border-left: 4px solid var(--horizon-cyan);
+        }
+
+        .contact-info-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 30px rgba(69, 183, 209, 0.2);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            font-family: var(--font-display);
+            color: var(--space-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .info-content p {
+            color: var(--void-black);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-note {
+            font-size: 0.85rem;
+            color: var(--earth-teal);
+            font-style: italic;
+        }
+
+        .info-link {
+            color: var(--horizon-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .info-link:hover {
+            color: var(--earth-teal);
+        }
+
+        .crew-manifesto {
+            background: var(--cosmic-gradient);
+            padding: 2rem;
+            border-radius: 15px;
+            color: var(--cloud-white);
+        }
+
+        .crew-manifesto h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .crew-manifesto ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .crew-manifesto li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .crew-manifesto li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--aurora-green);
+            font-weight: bold;
+        }
+
         /* Footer */
         footer {
             background: var(--cosmic-navy);
@@ -652,6 +817,10 @@
             .repo-cards {
                 grid-template-columns: 1fr;
             }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Smooth Scroll */
@@ -683,6 +852,7 @@
                 <li><a href="#chapters">Guide</a></li>
                 <li><a href="#support">Support</a></li>
                 <li><a href="#repository">Create</a></li>
+                <li><a href="#contact">Connect</a></li>
             </ul>
         </nav>
     </header>
@@ -991,6 +1161,97 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Join the Crew</h2>
+            <p class="section-subtitle">
+                Connect with fellow crew members, contribute your expertise, or simply reach out to coordinate
+            </p>
+            
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <h3 class="contact-heading">Send a Transmission</h3>
+                    <form class="crew-contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Crew Member Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Communication Channel</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@spaceship.earth">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="role">Crew Role Interest</label>
+                            <select id="role" name="role">
+                                <option value="">Select your primary interest...</option>
+                                <option value="strategist">Strategist - Vision & Planning</option>
+                                <option value="builder">Builder - Development & Creation</option>
+                                <option value="connector">Connector - Community & Outreach</option>
+                                <option value="catalyst">Catalyst - Ideas & Innovation</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Share your thoughts, ideas, or questions for the crew..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-contact">
+                            Establish Connection 🚀
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info-wrapper">
+                    <h3 class="contact-heading">Coordination Channels</h3>
+                    
+                    <div class="contact-info-card">
+                        <div class="info-icon">📧</div>
+                        <div class="info-content">
+                            <h4>Mission Control</h4>
+                            <p>crew@spaceshipearth.v2</p>
+                            <span class="info-note">(Coming Soon - Platform in Development)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="info-icon">💬</div>
+                        <div class="info-content">
+                            <h4>Community Hub</h4>
+                            <p>Join our discussion channels</p>
+                            <span class="info-note">(Forum & Discord - Launching Soon)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="info-icon">🐙</div>
+                        <div class="info-content">
+                            <h4>Development Bridge</h4>
+                            <p><a href="https://github.com/NoahOBodhi" target="_blank" class="info-link">GitHub Repository</a></p>
+                            <span class="info-note">Open-source collaboration hub</span>
+                        </div>
+                    </div>
+                    
+                    <div class="crew-manifesto">
+                        <h4>🌍 Crew Principles</h4>
+                        <ul>
+                            <li>We amplify, not extract</li>
+                            <li>We coordinate, not control</li>
+                            <li>We regenerate, not deplete</li>
+                            <li>We demonstrate abundance through action</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1042,7 +1303,7 @@
         }, observerOptions);
 
         // Observe all animatable elements
-        document.querySelectorAll('.about-card, .chapter-card, .repo-card, .philosophy-card').forEach(el => {
+        document.querySelectorAll('.about-card, .chapter-card, .repo-card, .philosophy-card, .contact-form-wrapper, .contact-info-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
@@ -1056,6 +1317,13 @@
             if (hero && scrolled < hero.offsetHeight) {
                 hero.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
+        });
+
+        // Form submission handler (placeholder - connect to your backend)
+        document.querySelector('.crew-contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🚀 Thank you for your transmission! We\'ll coordinate with you soon.\n\nNote: This is a placeholder. Connect this form to your preferred backend service (Netlify Forms, Formspree, etc.) to begin receiving messages.');
+            this.reset();
         });
     </script>
 </body>

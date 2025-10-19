@@ -778,6 +778,11 @@
             font-weight: bold;
         }
 
+        /* Honeypot field - hide from users */
+        .hidden {
+            display: none;
+        }
+
         /* Footer */
         footer {
             background: var(--cosmic-navy);
@@ -1173,7 +1178,15 @@
                 <!-- Contact Form -->
                 <div class="contact-form-wrapper">
                     <h3 class="contact-heading">Send a Transmission</h3>
-                    <form class="crew-contact-form" action="#" method="POST">
+                    <form name="crew-contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="crew-contact-form">
+                        <!-- Netlify form identifier (hidden) -->
+                        <input type="hidden" name="form-name" value="crew-contact" />
+                        
+                        <!-- Honeypot field for spam protection (hidden) -->
+                        <p class="hidden">
+                            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                        </p>
+                        
                         <div class="form-group">
                             <label for="name">Crew Member Name</label>
                             <input type="text" id="name" name="name" required placeholder="Your name">
@@ -1317,13 +1330,6 @@
             if (hero && scrolled < hero.offsetHeight) {
                 hero.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
-        });
-
-        // Form submission handler (placeholder - connect to your backend)
-        document.querySelector('.crew-contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('🚀 Thank you for your transmission! We\'ll coordinate with you soon.\n\nNote: This is a placeholder. Connect this form to your preferred backend service (Netlify Forms, Formspree, etc.) to begin receiving messages.');
-            this.reset();
         });
     </script>
 </body>

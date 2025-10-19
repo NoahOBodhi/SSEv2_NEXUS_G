@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spaceship Earth v2.0: An Implementation Guide - You are crew. You are conscious. You are capable.">
+    <title>Spaceship Earth v2.0 - An Implementation Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cosmic-navy: #0a1628;
+            --space-blue: #1e3a5f;
+            --earth-teal: #2d7a8f;
+            --horizon-cyan: #45b7d1;
+            --aurora-green: #5dd39e;
+            --stellar-gold: #f4a261;
+            --crew-orange: #e76f51;
+            --void-black: #000814;
+            --cloud-white: #f8f9fa;
+            
+            --cosmic-gradient: linear-gradient(135deg, var(--cosmic-navy) 0%, var(--space-blue) 50%, var(--earth-teal) 100%);
+            --horizon-gradient: linear-gradient(to right, var(--horizon-cyan), var(--aurora-green), var(--stellar-gold));
+            
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--void-black);
+            background-color: var(--cloud-white);
+            overflow-x: hidden;
+        }
+
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cosmic-navy);
+            z-index: -1;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 75%, white, transparent);
+            background-size: 200% 200%;
+            animation: twinkle 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: var(--cosmic-gradient);
+            color: var(--cloud-white);
+            padding: 120px 2rem 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="600" cy="300" r="200" fill="rgba(69,183,209,0.1)"/><circle cx="600" cy="300" r="150" fill="rgba(69,183,209,0.1)"/><circle cx="600" cy="300" r="100" fill="rgba(69,183,209,0.15)"/></svg>') center/contain no-repeat;
+            opacity: 0.3;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.05); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .crew-badge {
+            display: inline-block;
+            background: rgba(93, 211, 158, 0.2);
+            border: 2px solid var(--aurora-green);
+            color: var(--aurora-green);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: var(--horizon-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            font-family: var(--font-display);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--horizon-gradient);
+            color: var(--void-black);
+            box-shadow: 0 10px 30px rgba(69, 183, 209, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(69, 183, 209, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cloud-white);
+            border: 2px solid var(--cloud-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cloud-white);
+            color: var(--cosmic-navy);
+        }
+
+        /* Content Sections */
+        section {
+            padding: 100px 2rem;
+            position: relative;
+            background: var(--cloud-white);
+        }
+
+        section:nth-child(even) {
+            background: linear-gradient(to bottom, var(--cloud-white), #e8f4f8);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--cosmic-navy);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--space-blue);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(69, 183, 209, 0.15);
+        }
+
+        .about-card h3 {
+            font-family: var(--font-display);
+            color: var(--earth-teal);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: var(--space-blue);
+            line-height: 1.8;
+        }
+
+        /* Ebook Section */
+        .ebook-showcase {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ebook-showcase h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--cosmic-navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .ebook-showcase p {
+            font-size: 1.1rem;
+            color: var(--space-blue);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .chapter-count {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--earth-teal), var(--horizon-cyan));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Support Section */
+        .support {
+            background: var(--cosmic-gradient);
+            color: var(--cloud-white);
+        }
+
+        .support .section-title,
+        .support .section-subtitle {
+            color: var(--cloud-white);
+        }
+
+        .support-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .support-card h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--aurora-green);
+        }
+
+        .support-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .support-amount {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--aurora-green);
+            margin: 2rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--void-black);
+            color: var(--cloud-white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+        }
+
+        footer strong {
+            color: var(--aurora-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .ebook-showcase,
+            .support-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-background">
+        <div class="stars"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="crew-badge">🌍 CREW CONSCIOUSNESS ACTIVATED</div>
+            <h1>Spaceship Earth v2.0</h1>
+            <p class="tagline">An Implementation Guide for Conscious Crew Members</p>
+            <p style="font-size: 1.3rem; margin: 2rem 0; font-weight: 300;">
+                You are crew. You are conscious. You are capable.
+            </p>
+            <div class="cta-group">
+                <a href="#ebook" class="btn btn-primary">Access the Guide</a>
+                <a href="#support" class="btn btn-secondary">Support the Mission</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">What is Spaceship Earth v2.0?</h2>
+            <p class="section-subtitle">
+                A comprehensive framework for implementing Buckminster Fuller's abundance principles 
+                using modern technology and crew consciousness
+            </p>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎯 The Vision</h3>
+                    <p>
+                        Transform humanity from passive passengers to empowered crew members, 
+                        orchestrating Earth's resources with consciousness and capability. 
+                        Abundance is achievable—scarcity is a design flaw, not natural law.
+                    </p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>🔧 The Implementation</h3>
+                    <p>
+                        Practical frameworks combining AI, blockchain, cybersecurity, and data science 
+                        to build abundance infrastructure. This isn't theory—it's an executable roadmap 
+                        for planetary transformation.
+                    </p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>🚀 Your Role</h3>
+                    <p>
+                        Whether you're a Strategist, Builder, Connector, or Catalyst—there's a place 
+                        for you on this crew. Every capability matters. Every contribution amplifies. 
+                        Start where you are.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ebook Section -->
+    <section id="ebook">
+        <div class="container">
+            <h2 class="section-title">The Implementation Guide</h2>
+            <p class="section-subtitle">
+                18 chapters bridging philosophy and practice, inspiration and action
+            </p>
+            
+            <div class="ebook-showcase">
+                <h3>📚 Complete Open-Source Ebook</h3>
+                <p>
+                    From crew consciousness awakening to planetary resource orchestration, this guide 
+                    provides the frameworks, systems, and practical steps to implement Fuller's vision 
+                    using 21st-century capabilities.
+                </p>
+                
+                <div class="chapter-count">18 Chapters • 6 Parts • Full Implementation Framework</div>
+                
+                <p>
+                    <strong>Topics include:</strong> Crew consciousness development, merit-based coordination, 
+                    AI-augmented decision systems, blockchain abundance infrastructure, cybersecurity for trust, 
+                    data-driven resource optimization, and pathways to planetary transformation.
+                </p>
+                
+                <a href="https://github.com/NoahOBodhi/Spaceship_Earth_v2.0_An_Implementation_Guide" 
+                   target="_blank" 
+                   class="btn btn-primary" 
+                   style="margin-top: 2rem;">
+                    Read the Guide on GitHub →
+                </a>
+                
+                <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">
+                    Licensed CC BY-SA 4.0 • Free forever • Fork and adapt for your context
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support">
+        <div class="container">
+            <h2 class="section-title">Support the AAN Campaign</h2>
+            <p class="section-subtitle">
+                Help activate crew consciousness and build abundance infrastructure for all
+            </p>
+            
+            <div class="support-card">
+                <h3>🚀 SSEv2 AAN Campaign</h3>
+                <p>
+                    Your contribution directly supports the development, documentation, and distribution 
+                    of this implementation guide. Every crew member who gains access to these frameworks 
+                    brings us closer to planetary-scale crew consciousness.
+                </p>
+                <p>
+                    All funds support open-source development, community building, and making this 
+                    knowledge freely accessible to crew members worldwide. We're building abundance 
+                    infrastructure—starting with information itself.
+                </p>
+                <div class="support-amount">Every Crew Member Counts</div>
+                <a href="https://www.gofundme.com/f/SSEv2-AAN-Campaign" 
+                   target="_blank" 
+                   class="btn btn-primary">
+                    Join the Crew Fund →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+                <strong>You are crew. You are conscious. You are capable.</strong>
+            </p>
+            <p>&copy; 2024-2025 Spaceship Earth v2.0 • Licensed under CC BY-SA 4.0</p>
+            <p style="margin-top: 1rem;">
+                Built with collaboration between humans and AI • Open source and freely available to all crew members
+            </p>
+            <p style="margin-top: 1.5rem;">
+                <a href="https://github.com/NoahOBodhi/SSEv2_NEXUS_G" 
+                   style="color: var(--aurora-green); text-decoration: none;">
+                    Landing Page Repo
+                </a> • 
+                <a href="https://github.com/NoahOBodhi/Spaceship_Earth_v2.0_An_Implementation_Guide" 
+                   style="color: var(--aurora-green); text-decoration: none;">
+                    Implementation Guide
+                </a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-card, .ebook-showcase, .support-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1367,13 +1367,23 @@
         });
 
         // Parallax effect for hero
-        window.addEventListener('scroll', () => {
+        // Parallax effect for hero - DESKTOP ONLY
+    window.addEventListener('scroll', () => {
+        // Disable on mobile to prevent overlap
+        if (window.innerWidth > 768) {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
             if (hero && scrolled < hero.offsetHeight) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.transform = `translateY(${scrolled * 0.4}px)`;  // Gentler effect
             }
-        });
+        } else {
+            // Reset transform on mobile
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = 'none';
+        }
+    }
+});
 
         // Handle Netlify Form Success
         // Check for success parameter in URL

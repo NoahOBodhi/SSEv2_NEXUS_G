@@ -1320,70 +1320,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Join the Crew</h2>
-            <p class="section-subtitle">
-                Connect with fellow crew members, contribute your expertise, or simply reach out to coordinate
-            </p>
-            
-            <div class="contact-grid">
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper">
-                    <h3 class="contact-heading">Send a Transmission</h3>
-                    <form name="crew-contact" method="POST" action="contact-handler.php" class="crew-contact-form" id="crewContactForm">
-                        <!-- Honeypot field for spam protection (hidden) -->
-                        <p class="hidden">
-                            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                        </p>
-                        
-                        <div class="form-group">
-                            <label for="name">Crew Member Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Communication Channel</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@spaceship.earth">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="role">Crew Role Interest</label>
-                            <select id="role" name="role">
-                                <option value="">Select your primary interest...</option>
-                                <option value="strategist">Strategist - Vision & Planning</option>
-                                <option value="builder">Builder - Development & Creation</option>
-                                <option value="connector">Connector - Community & Outreach</option>
-                                <option value="catalyst">Catalyst - Ideas & Innovation</option>
-                                <option value="general">General Inquiry</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Share your thoughts, ideas, or questions for the crew..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-contact">
-                            Establish Connection 🚀
-                        </button>
-                    </form>
-                    
-                    <!-- Success Message (shown after submission) -->
-                    <div id="formSuccess" class="form-success">
-                        <h3>🎉 Transmission Received!</h3>
-                        <p>Welcome aboard, crew member! Your message has been successfully transmitted to Mission Control. We'll respond to your coordinates soon.</p>
-                    </div>
-                    
-                    <!-- Error Message (shown if submission fails) -->
-                    <div id="formError" class="form-error">
-                        <h3>⚠️ Transmission Failed</h3>
-                        <p id="errorMessage">Unable to send your message. Please try again or contact us directly.</p>
-                    </div>
-                </div>
-                
                 <!-- Contact Information -->
                 <div class="contact-info-wrapper">
                     <h3 class="contact-heading">Coordination Channels</h3>
@@ -1543,4 +1479,5 @@
         });
     </script>
 </body>
+
 </html>

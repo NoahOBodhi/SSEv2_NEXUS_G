@@ -1448,7 +1448,7 @@
         </div>
     </section>
                 <!-- Contact Information -->
-    <section id="connect" class="connect">
+    <section id="contact" class="connect">
         <div class="container">
             <h2 class="section-title">Connect</h2>
             <p class="section-subtitle">
@@ -1470,7 +1470,7 @@
                         <div class="info-content">
                             <h4>Communication Hub</h4>
                             <p>Join our discussion channels</p>
-                             <p><a href="https://discord.gg/eppQP5KvW4" target="_blank" class="info-link">Discord Server</a></p>
+                            <p><a href="https://discord.gg/eppQP5KvW4" target="_blank" class="info-link">Discord Server</a></p>
                             <span class="info-note">Discord Server Forums</span>
                         </div>
                     </div>
@@ -1602,61 +1602,7 @@
                 hero.style.transform = 'translateY(0)';
             }
         });
-
-        // Form submission with AJAX
-        document.getElementById('crewContactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = this;
-            const formData = new FormData(form);
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            
-            // Disable button and show loading state
-            submitButton.disabled = true;
-            submitButton.innerHTML = 'Transmitting... 🛸';
-            
-            try {
-                const response = await fetch('contact-handler.php', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    // Hide form and show success message
-                    form.style.display = 'none';
-                    const successMsg = document.getElementById('formSuccess');
-                    successMsg.classList.add('show');
-                    
-                    // Reset form (in case user wants to submit again)
-                    form.reset();
-                } else {
-                    // Show error message
-                    alert('Error: ' + data.message);
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = originalButtonText;
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                alert('Unable to send message. Please try again or contact us directly at noah.o.bodhi@ssev2-crew.org');
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        });
     </script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-

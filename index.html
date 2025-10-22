@@ -1577,12 +1577,25 @@
             observer.observe(el);
         });
 
-        // Parallax effect for hero
+        // Parallax effect for hero (desktop only)
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
-            if (hero && scrolled < hero.offsetHeight) {
+            
+            // Only apply parallax on screens wider than 768px (desktop/tablet)
+            if (hero && scrolled < hero.offsetHeight && window.innerWidth > 768) {
                 hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            } else if (hero && window.innerWidth <= 768) {
+                // Reset transform on mobile to prevent coverage
+                hero.style.transform = 'translateY(0)';
+            }
+        });
+        
+        // Reset parallax on window resize
+        window.addEventListener('resize', () => {
+            const hero = document.querySelector('.hero');
+            if (hero && window.innerWidth <= 768) {
+                hero.style.transform = 'translateY(0)';
             }
         });
 
@@ -1632,6 +1645,7 @@
 </body>
 
 </html>
+
 
 
 

@@ -1,0 +1,629 @@
+/* SSEv2 Chapter Page Styles - Inherits design system from main site */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cosmic-navy: #0a1628;
+    --space-blue: #1e3a5f;
+    --earth-teal: #2d7a8f;
+    --horizon-cyan: #45b7d1;
+    --aurora-green: #5dd39e;
+    --stellar-gold: #f4a261;
+    --crew-orange: #e76f51;
+    --void-black: #000814;
+    --cloud-white: #f8f9fa;
+    --nebula-purple: #7b68ee;
+
+    --cosmic-gradient: linear-gradient(135deg, var(--cosmic-navy) 0%, var(--space-blue) 50%, var(--earth-teal) 100%);
+    --earth-gradient: linear-gradient(135deg, var(--earth-teal) 0%, var(--horizon-cyan) 50%, var(--aurora-green) 100%);
+    --horizon-gradient: linear-gradient(to right, var(--horizon-cyan), var(--aurora-green), var(--stellar-gold));
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--void-black);
+    background-color: var(--cloud-white);
+    overflow-x: hidden;
+}
+
+/* Header - matches main site */
+header {
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--cloud-white);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--horizon-cyan);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: var(--horizon-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--cloud-white);
+    text-decoration: none;
+    font-weight: 500;
+    font-family: var(--font-display);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--horizon-cyan);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--cloud-white);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Chapter Hero Banner */
+.chapter-hero {
+    background: var(--cosmic-gradient);
+    color: var(--cloud-white);
+    padding: 120px 2rem 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="600" cy="300" r="200" fill="rgba(69,183,209,0.1)"/><circle cx="600" cy="300" r="150" fill="rgba(69,183,209,0.1)"/><circle cx="600" cy="300" r="100" fill="rgba(69,183,209,0.15)"/></svg>') center/contain no-repeat;
+    opacity: 0.2;
+}
+
+.chapter-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.chapter-hero .part-label {
+    display: inline-block;
+    background: rgba(93, 211, 158, 0.2);
+    border: 2px solid var(--aurora-green);
+    color: var(--aurora-green);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.chapter-hero h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.chapter-meta {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+.chapter-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Chapter Content Area */
+.chapter-content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 2rem 80px;
+}
+
+/* Typography for chapter body */
+.chapter-content h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--space-blue);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--horizon-cyan);
+}
+
+.chapter-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--earth-teal);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.chapter-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--space-blue);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-content h5 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--earth-teal);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.chapter-content p {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    color: var(--void-black);
+}
+
+.chapter-content a {
+    color: var(--horizon-cyan);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.chapter-content a:hover {
+    color: var(--earth-teal);
+    border-bottom-color: var(--earth-teal);
+}
+
+/* Blockquotes - for RBF quotes */
+.chapter-content blockquote {
+    background: linear-gradient(135deg, rgba(30, 58, 95, 0.06) 0%, rgba(45, 122, 143, 0.06) 100%);
+    border-left: 4px solid var(--horizon-cyan);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--space-blue);
+}
+
+.chapter-content blockquote p {
+    color: var(--space-blue);
+    margin-bottom: 0.5rem;
+}
+
+.chapter-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Lists */
+.chapter-content ul, .chapter-content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.85;
+}
+
+.chapter-content li {
+    margin-bottom: 0.5rem;
+}
+
+.chapter-content li ul, .chapter-content li ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Bold and emphasis */
+.chapter-content strong {
+    color: var(--space-blue);
+    font-weight: 600;
+}
+
+.chapter-content em {
+    color: var(--earth-teal);
+}
+
+/* Horizontal rules */
+.chapter-content hr {
+    border: none;
+    height: 2px;
+    background: var(--horizon-gradient);
+    margin: 3rem 0;
+    border-radius: 2px;
+}
+
+/* Code blocks */
+.chapter-content code {
+    background: rgba(10, 22, 40, 0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+.chapter-content pre {
+    background: var(--cosmic-navy);
+    color: var(--cloud-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--earth-teal);
+}
+
+.chapter-content pre code {
+    background: none;
+    padding: 0;
+    color: var(--cloud-white);
+}
+
+/* Tables */
+.chapter-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+    overflow-x: auto;
+    display: block;
+}
+
+.chapter-content thead {
+    background: var(--cosmic-navy);
+    color: var(--cloud-white);
+}
+
+.chapter-content th {
+    padding: 1rem;
+    text-align: left;
+    font-family: var(--font-display);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.chapter-content td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+.chapter-content tbody tr:hover {
+    background: rgba(69, 183, 209, 0.05);
+}
+
+/* Images */
+.chapter-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Chapter Navigation */
+.chapter-nav {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.chapter-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1.75rem;
+    background: white;
+    border: 2px solid var(--horizon-cyan);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--space-blue);
+    font-family: var(--font-display);
+    font-weight: 600;
+    transition: all 0.3s;
+    min-width: 200px;
+}
+
+.chapter-nav a:hover {
+    background: rgba(69, 183, 209, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(69, 183, 209, 0.2);
+}
+
+.chapter-nav .nav-prev {
+    margin-right: auto;
+}
+
+.chapter-nav .nav-next {
+    margin-left: auto;
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+.chapter-nav .nav-label {
+    font-size: 0.8rem;
+    color: var(--earth-teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.chapter-nav .nav-title {
+    font-size: 0.95rem;
+    display: block;
+}
+
+.chapter-nav .nav-arrow {
+    font-size: 1.5rem;
+    color: var(--horizon-cyan);
+    flex-shrink: 0;
+}
+
+/* Back to top */
+.back-to-top {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.back-to-top a {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--horizon-gradient);
+    color: var(--void-black);
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.back-to-top a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(69, 183, 209, 0.4);
+}
+
+/* Footer - matches main site */
+footer {
+    background: var(--cosmic-navy);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 2px solid var(--earth-teal);
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+footer a {
+    color: var(--horizon-cyan);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--aurora-green);
+}
+
+/* Progress bar */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--horizon-gradient);
+    z-index: 1001;
+    transition: width 0.1s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        padding: 0.75rem 0;
+    }
+
+    nav {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+        max-width: 200px;
+        line-height: 1.2;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background: rgba(10, 22, 40, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 80px 2rem 2rem;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        border-left: 2px solid var(--horizon-cyan);
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        font-size: 1.2rem;
+        padding: 0.5rem 0;
+    }
+
+    .chapter-hero {
+        padding: 100px 1.5rem 40px;
+    }
+
+    .chapter-hero h1 {
+        font-size: 2rem;
+    }
+
+    .chapter-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .chapter-content {
+        padding: 40px 1.25rem 60px;
+    }
+
+    .chapter-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .chapter-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .chapter-content p,
+    .chapter-content li {
+        font-size: 1rem;
+    }
+
+    .chapter-nav {
+        flex-direction: column;
+        padding: 0 1.25rem 40px;
+    }
+
+    .chapter-nav a {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .chapter-nav .nav-next {
+        text-align: left;
+        flex-direction: row;
+    }
+
+    .chapter-content table {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 0.95rem;
+    }
+
+    .nav-links {
+        width: 80%;
+    }
+
+    .chapter-hero h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

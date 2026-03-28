@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spaceship Earth v2.0 - Cover: Published under CC BY-SA 4.0">
+    <meta name="author" content="Noah O. Bodhi">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ssev2-crew.org/chapters/cover.html">
+    <meta property="og:title" content="Cover - Spaceship Earth v2.0">
+    <meta property="og:description" content="Published under CC BY-SA 4.0">
+    <meta property="og:image" content="https://ssev2-crew.org/assets/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <title>Cover - Spaceship Earth v2.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/chapter.css">
+
+    <!-- MathJax for LaTeX formula rendering -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$']],
+            displayMath: [['$$', '$$']],
+            processEscapes: true
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress" id="readingProgress"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="../index.html" class="logo">SPACESHIP EARTH v2.0</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#chapters">Guide</a></li>
+                <li><a href="../index.html#support">Support</a></li>
+                <li><a href="../index.html#repository">Create</a></li>
+                <li><a href="../index.html#contact">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Chapter Hero -->
+    <section class="chapter-hero">
+        <div class="chapter-hero-content">
+            <div class="part-label">Front</div>
+            <h1>Cover</h1>
+            
+        </div>
+    </section>
+
+    <!-- Chapter Content -->
+    <article class="chapter-content">
+        <p>Spaceship Earth v2.0 An Implementation Guide
+by Noah O. Bodhi</p>
+<p>© 2025, by Noah O. Bodhi.
+Published under a Creative Commons Attribution-Share Alike license (CC BY-SA), version 4.0.</p>
+<p>Publisher:
+Downloadable e-book available at https://ssev2-crew.org</p>
+<p>This book is published under a CC BY-SA license, which means that you can copy, redistribute, remix, transform, and build upon the content for any purpose, even commercially, as long as you give appropriate credit, provide a link to the license, and indicate if changes were made. If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original. </p>
+<p>License details: 
+https://creativecommons.org/licenses/by-sa/4.0/</p>
+<p>Spaceship Earth v2.0 An Implementation Guide is published with the kind support from backers of our crowdfunding-campaigns on the GoFundMe platform. https://www.gofundme.com/f/SSEv2-AAN-Campaign</p>
+    </article>
+
+    <!-- Chapter Navigation -->
+    <nav class="chapter-nav">
+        
+        <a href="contents.html" class="nav-next">
+            <span class="nav-arrow">&rarr;</span>
+            <span>
+                <span class="nav-label">Next</span>
+                <span class="nav-title">Table of Contents</span>
+            </span>
+        </a>
+    </nav>
+
+    <!-- Back to Guide -->
+    <div class="back-to-top">
+        <a href="../index.html#chapters">Back to Implementation Guide</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #e76f51;">
+                <strong>CURRENT STATUS: 1% Pirates | 98% Passengers | 1% Crew</strong>
+            </p>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #5dd39e;">
+                <strong>You are conscious. You are capable. You are crew.</strong>
+            </p>
+            <p>&copy; 2025 Noah O. Bodhi - Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a></p>
+            <p style="margin-top: 1rem; font-size: 0.95rem;">
+                Built with collaboration between humans and AI &bull; Open source and freely available to all crew members
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>

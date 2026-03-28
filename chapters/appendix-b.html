@@ -33,21 +33,36 @@
             integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRjXlZlYBlNtQ3oU"
             crossorigin="anonymous"></script>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    // Use window.onload to ensure all defer scripts are loaded (Firefox Android fix)
+    window.addEventListener("load", function() {
         function tryRender() {
             if (typeof renderMathInElement !== "undefined") {
                 renderMathInElement(document.body, {
                     delimiters: [
-                        {left: "$$", right: "$$", display: true},
-                        {left: "$", right: "$", display: false}
+                        {left: "$$", right: "$$", display: true}
                     ],
-                    throwOnError: false
+                    throwOnError: false,
+                    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
                 });
             } else {
-                setTimeout(tryRender, 200);
+                setTimeout(tryRender, 300);
             }
         }
         tryRender();
+    });
+    // Fallback: also try on DOMContentLoaded in case load fires too late
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            if (typeof renderMathInElement !== "undefined" && document.querySelectorAll(".katex").length === 0) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true}
+                    ],
+                    throwOnError: false,
+                    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+                });
+            }
+        }, 1000);
     });
     </script>
     <style>
@@ -263,7 +278,7 @@ $$
 <p>For local economic transformation:</p>
 <ul>
 <li>If crew members interact daily (<em>p</em> = 0.8)</li>
-<li>And CARE$ provides 2× efficiency over fiat (<em>r</em> = 0.5)</li>
+<li>And CARE&#36; provides 2× efficiency over fiat (<em>r</em> = 0.5)</li>
 <li>Then: <em>N_critical</em> = 1/(0.8 × 0.5) = <strong>2.5 or ~3 active crew members</strong></li>
 </ul>
 <p>This seems impossibly low, but history confirms it: <strong>Small groups with high interaction frequency and superior design can tip entire systems.</strong></p>
@@ -331,19 +346,19 @@ $$
 <li><strong>Exponential Phase (Critical Mass):</strong> The system reaches a tipping point (<em>t₀</em>). Suddenly, adoption accelerates dramatically. What seemed impossible becomes inevitable.</li>
 <li><strong>Saturation Phase (New Normal):</strong> The new paradigm stabilizes at a higher equilibrium (<em>L</em>). Abundance becomes the default operating system.</li>
 </ol>
-<p><strong>CARE$ and Merit System Application:</strong></p>
+<p><strong>CARE&#36; and Merit System Application:</strong></p>
 <p>The merit system doesn&rsquo;t accumulate linearly—it follows a sigmoid curve toward economic displacement. Early contributors might feel their impact is minimal, but as the network reaches critical mass:</p>
 $$
 \text{Economic Displacement Potential} = \frac{L_{\text{currency}}}{1 + e^{-k(\text{crew}_{\text{active}} - \text{crew}_{\text{critical}})}}
 $$
 <p>Where:</p>
 <ul>
-<li><em>L_currency</em> is the total economic value that can be displaced by CARE$</li>
+<li><em>L_currency</em> is the total economic value that can be displaced by CARE&#36;</li>
 <li><em>crew_active</em> is current active crew members</li>
 <li><em>crew_critical</em> is the critical mass threshold</li>
 </ul>
 <p><strong>Example:</strong>
-Consider the adoption of CARE$ tokens in a local economy:</p>
+Consider the adoption of CARE&#36; tokens in a local economy:</p>
 <ul>
 <li>At 50 active users: minimal displacement (~5% of local transactions)</li>
 <li>At 500 users (critical mass): 50% displacement occurs within months</li>
@@ -385,7 +400,7 @@ $$
 <p><strong>Merit System Mathematics:</strong></p>
 <ul>
 <li>Contributions weighted by synergy multiplier</li>
-<li>CARE$ value calculated using network effects</li>
+<li>CARE&#36; value calculated using network effects</li>
 <li>Critical mass thresholds displayed for each mission</li>
 <li>SAR tracking for regenerative impact verification</li>
 </ul>

@@ -504,6 +504,7 @@ footer a:hover {
     transition: width 0.1s;
 }
 
+/* MathJax Formula Rendering */mjx-container {    overflow-x: auto;    overflow-y: hidden;    max-width: 100%;    padding: 0.5rem 0;    display: block !important;}mjx-container[jax="CHTML"][display="true"] {    margin: 1.5rem 0;    padding: 1rem 0;    text-align: center;}/* Ensure formulas scale on small screens */mjx-container svg {    max-width: 100%;    height: auto;}/* Fallback: style raw LaTeX if MathJax fails to load */.chapter-content p > mjx-container,.chapter-content mjx-container {    font-size: 1rem;    line-height: 1.6;}
 /* Responsive */
 @media (max-width: 768px) {
     header {
@@ -602,7 +603,7 @@ footer a:hover {
     }
 
     .chapter-content table {
-        font-size: 0.85rem;
+        font-size: 0.85rem;    }    mjx-container {        font-size: 0.85rem;        overflow-x: auto;        -webkit-overflow-scrolling: touch;    }    mjx-container[jax="CHTML"][display="true"] {        margin: 1rem 0;        padding: 0.5rem 0;
     }
 }
 

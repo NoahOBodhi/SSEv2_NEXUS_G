@@ -25,6 +25,22 @@
     <!-- MathJax for LaTeX formula rendering -->
     <script>
     MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 0.5,
+            matchFontHeight: true
+        },
+        startup: {
+            ready: function() {
+                MathJax.startup.defaultReady();
+                MathJax.startup.promise.then(function() {
+                    document.querySelectorAll("mjx-container").forEach(function(el) {
+                        el.style.maxWidth = "100%";
+                        el.style.overflowX = "auto";
+                    });
+                });
+            }
+        },
         tex: {
             inlineMath: [['$', '$']],
             displayMath: [['$$', '$$']],

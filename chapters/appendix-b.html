@@ -22,65 +22,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/chapter.css">
 
-    <!-- KaTeX for LaTeX formula rendering (fast, mobile-friendly) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-          integrity="sha384-nB0miv6/jRmo5RLHO8BIKBkHnKRE8XwrOg5QF1dDilhLQfdw6Nc/bTG6dBIHspe"
-          crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-            integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"
-            crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-            integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRjXlZlYBlNtQ3oU"
-            crossorigin="anonymous"></script>
+    <!-- MathJax for LaTeX formula rendering -->
     <script>
-    // Use window.onload to ensure all defer scripts are loaded (Firefox Android fix)
-    window.addEventListener("load", function() {
-        function tryRender() {
-            if (typeof renderMathInElement !== "undefined") {
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true}
-                    ],
-                    throwOnError: false,
-                    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
-                });
-            } else {
-                setTimeout(tryRender, 300);
-            }
+    MathJax = {
+        tex: {
+            inlineMath: [],
+            displayMath: [['$$', '$$']],
+            processEscapes: true
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
-        tryRender();
-    });
-    // Fallback: also try on DOMContentLoaded in case load fires too late
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() {
-            if (typeof renderMathInElement !== "undefined" && document.querySelectorAll(".katex").length === 0) {
-                renderMathInElement(document.body, {
-                    delimiters: [
-                        {left: "$$", right: "$$", display: true}
-                    ],
-                    throwOnError: false,
-                    ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
-                });
-            }
-        }, 1000);
-    });
+    };
     </script>
-    <style>
-        .katex-display {
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 0.5rem 0;
-            margin: 1.5rem 0;
-        }
-        .katex { font-size: 1.1em; }
-        @media (max-width: 768px) {
-            .katex-display {
-                font-size: 0.9em;
-                margin: 1rem 0;
-                -webkit-overflow-scrolling: touch;
-            }
-        }
-    </style>
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <!-- Reading Progress Bar -->
@@ -278,7 +233,7 @@ $$
 <p>For local economic transformation:</p>
 <ul>
 <li>If crew members interact daily (<em>p</em> = 0.8)</li>
-<li>And CARE&#36; provides 2× efficiency over fiat (<em>r</em> = 0.5)</li>
+<li>And CARE$ provides 2× efficiency over fiat (<em>r</em> = 0.5)</li>
 <li>Then: <em>N_critical</em> = 1/(0.8 × 0.5) = <strong>2.5 or ~3 active crew members</strong></li>
 </ul>
 <p>This seems impossibly low, but history confirms it: <strong>Small groups with high interaction frequency and superior design can tip entire systems.</strong></p>
@@ -346,19 +301,19 @@ $$
 <li><strong>Exponential Phase (Critical Mass):</strong> The system reaches a tipping point (<em>t₀</em>). Suddenly, adoption accelerates dramatically. What seemed impossible becomes inevitable.</li>
 <li><strong>Saturation Phase (New Normal):</strong> The new paradigm stabilizes at a higher equilibrium (<em>L</em>). Abundance becomes the default operating system.</li>
 </ol>
-<p><strong>CARE&#36; and Merit System Application:</strong></p>
+<p><strong>CARE$ and Merit System Application:</strong></p>
 <p>The merit system doesn&rsquo;t accumulate linearly—it follows a sigmoid curve toward economic displacement. Early contributors might feel their impact is minimal, but as the network reaches critical mass:</p>
 $$
 \text{Economic Displacement Potential} = \frac{L_{\text{currency}}}{1 + e^{-k(\text{crew}_{\text{active}} - \text{crew}_{\text{critical}})}}
 $$
 <p>Where:</p>
 <ul>
-<li><em>L_currency</em> is the total economic value that can be displaced by CARE&#36;</li>
+<li><em>L_currency</em> is the total economic value that can be displaced by CARE$</li>
 <li><em>crew_active</em> is current active crew members</li>
 <li><em>crew_critical</em> is the critical mass threshold</li>
 </ul>
 <p><strong>Example:</strong>
-Consider the adoption of CARE&#36; tokens in a local economy:</p>
+Consider the adoption of CARE$ tokens in a local economy:</p>
 <ul>
 <li>At 50 active users: minimal displacement (~5% of local transactions)</li>
 <li>At 500 users (critical mass): 50% displacement occurs within months</li>
@@ -400,7 +355,7 @@ $$
 <p><strong>Merit System Mathematics:</strong></p>
 <ul>
 <li>Contributions weighted by synergy multiplier</li>
-<li>CARE&#36; value calculated using network effects</li>
+<li>CARE$ value calculated using network effects</li>
 <li>Critical mass thresholds displayed for each mission</li>
 <li>SAR tracking for regenerative impact verification</li>
 </ul>

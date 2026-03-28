@@ -22,20 +22,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/chapter.css">
 
-    <!-- MathJax for LaTeX formula rendering -->
+    <!-- KaTeX for LaTeX formula rendering (self-hosted, no CDN dependency) -->
+    <link rel="stylesheet" href="../vendor/katex/katex.min.css">
+    <script defer src="../vendor/katex/katex.min.js"></script>
+    <script defer src="../vendor/katex/auto-render.min.js"></script>
     <script>
-    MathJax = {
-        tex: {
-            inlineMath: [],
-            displayMath: [['$$', '$$']],
-            processEscapes: true
-        },
-        options: {
-            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    window.addEventListener("load", function() {
+        if (typeof renderMathInElement === "function") {
+            renderMathInElement(document.body, {
+                delimiters: [{left: "$$", right: "$$", display: true}],
+                throwOnError: false
+            });
         }
-    };
+    });
     </script>
-    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.5rem 0; margin: 1.5rem 0; }
+        .katex { font-size: 1.1em; }
+        @media (max-width: 768px) {
+            .katex-display { font-size: 0.9em; margin: 1rem 0; -webkit-overflow-scrolling: touch; }
+        }
+    </style>
 </head>
 <body>
     <!-- Reading Progress Bar -->

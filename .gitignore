@@ -36,6 +36,9 @@ dist/
 build/
 *.min.js
 *.min.css
+n# Allow self-hosted KaTeX vendor files
+!vendor/katex/*.min.js
+!vendor/katex/*.min.css
 
 # Environment variables
 .env
